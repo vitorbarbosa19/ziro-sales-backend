@@ -4,7 +4,7 @@
   "description": "Saves sales data to spreadsheet",
   "main": "index.js",
   "scripts": {
-    "sales": "node index"
+    "start": "node index"
   },
   "repository": {
     "type": "git",
