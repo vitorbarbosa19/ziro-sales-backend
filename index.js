@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 	res.send(query)
 })
 
-app.listen(3000, () => console.log('Listening on port 3000'))
+app.listen(process.env.PORT || 3000, () => console.log(`Listening on port ${process.env.PORT || 3000}`))
 
 /* query
 localhost:3000?boleto=12345&lojista=joao&fornecedor=maria&pagamento=dinheiro&valor=300.00
