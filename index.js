@@ -33,8 +33,3 @@ app.get('/', async (req, res) => {
 })
 
 app.listen(process.env.PORT || 3000, () => console.log(`Listening on port ${process.env.PORT || 3000}`))
-
-/* sample query
-?boleto=12345&lojista=joao&fornecedor=maria&pagamento=dinheiro&valor=300.00
-&venda=03/jan/2018&comissao=0.05&assessor=leandro&vencimento=04/jan/2018&tipo=online
-*/

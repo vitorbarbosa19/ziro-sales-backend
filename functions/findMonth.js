@@ -1,17 +1,17 @@
 const findMonth = (month) => {
 	switch (month) {
-		case 'jan': return 01
-		case 'fev': return 02
-		case 'mar': return 03
-		case 'abr': return 04
-		case 'mai': return 05
-		case 'jun': return 06
-		case 'jul': return 07
-		case 'ago': return 08
-		case 'set': return 09
-		case 'out': return 10
-		case 'nov': return 11
-		case 'dez': return 12
+		case 'Jan': return 01
+		case 'Fev': return 02
+		case 'Mar': return 03
+		case 'Abr': return 04
+		case 'Mai': return 05
+		case 'Jun': return 06
+		case 'Jul': return 07
+		case 'Ago': return 08
+		case 'Set': return 09
+		case 'Out': return 10
+		case 'Nov': return 11
+		case 'Dez': return 12
 	}
 }
 
