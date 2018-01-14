@@ -5,17 +5,13 @@ const authenticate = () => {
 		const GoogleSpreadsheet = require('google-spreadsheet')
 		const credentials = require('./credentials')
 		const spreadsheet = new GoogleSpreadsheet(process.env.SPREADSHEET_ID)
+		console.log(spreadsheet)
 		return new Promise( (resolve, reject) => {
 			spreadsheet.useServiceAccountAuth(credentials, (error) => {
+				console.log('error:', error)
 				if(error)
-					reject({
-						authResult: error,
-						spreadsheet: null
-					})
-				resolve({
-					authResult: 'success',
-					spreadsheet: spreadsheet
-				})
+					reject(error)
+				resolve(spreadsheet)
 			})
 		})
 	}	catch (error) {

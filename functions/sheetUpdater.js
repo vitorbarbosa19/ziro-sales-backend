@@ -3,15 +3,13 @@ const sheetUpdater = (parameters) => {
 		try {
 			// authenticate to get permission to edit spreadsheet
 			const auth = require('./authenticate')
-			const { authResult, spreadsheet } = await auth()
+			const spreadsheet = await auth()
 			// add a new row to spreadsheet
-			if (authResult === 'success') {
-        spreadsheet.addRow(1, parameters, (error, rows) => {
-          if(error)
-            reject(error)
-          resolve('SUCCESS')
-        })
-			}
+      spreadsheet.addRow(1, parameters, (error, rows) => {
+        if(error)
+          reject(error)
+        resolve('SUCCESS')
+      })
 		} catch (error) {
 			reject(error)
 		}
