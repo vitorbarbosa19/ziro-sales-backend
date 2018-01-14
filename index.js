@@ -24,6 +24,7 @@ app.get('/', async (req, res) => {
 			res.send(await sheetUpdater({ boleto, lojista, fornecedor, pagamento, valor, venda, comissao,
 				assessor, vencimento, tipo, receita, mes }))
 		} catch (error) {
+			console.log(error)
 			res.send(error)
 		}
 	} else {
