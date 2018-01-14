@@ -3,18 +3,25 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
+	//set header to allow cross origin
+  res.setHeader('Access-Control-Allow-Origin', '*')
 	const url = require('url')
 	const query = url.parse(req.url, true).query
-	// query parameters from form submit
+	// save query parameters from front-end form submit
 	const { boleto, lojista, fornecedor, pagamento, valor,
 		venda, comissao, assessor, vencimento, tipo } = query
-	// calculated parameters
-	const findMonth = require('./functions/findMonth')
-	const receita = valor * comissao
-	const mes = venda.substr(3,3)
-	const mes_num = findMonth(mes)
-	console.log(receita, mes, mes_num)
-	res.send(query)
+	// check if parameters are valid
+	const validParameters = Boolean(boleto && lojista && fornecedor && pagamento && valor && venda
+		&& comissao && assessor && vencimento && tipo)
+	// if valid, generate the calculated parameters
+	if (validParameters) {
+		const findMonth = require('./functions/findMonth')
+		const receita = valor * comissao
+		const mes = findMonth(venda.substr(3,3))
+		res.send('SUCCESS')
+	} else {
+		res.send('INVALID_REQUEST')
+	}
 })
 
 app.listen(process.env.PORT || 3000, () => console.log(`Listening on port ${process.env.PORT || 3000}`))
