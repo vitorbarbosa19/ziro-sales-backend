@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express()
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
 	//set header to allow cross origin
   res.setHeader('Access-Control-Allow-Origin', '*')
 	const url = require('url')
@@ -18,7 +18,14 @@ app.get('/', (req, res) => {
 		const findMonth = require('./functions/findMonth')
 		const receita = valor * comissao
 		const mes = findMonth(venda.substr(3,3))
-		res.send('SUCCESS')
+		// save all parameters to a google spreadsheet
+		const sheetUpdater = require('./functions/sheetUpdater')
+		try {
+			res.send(await sheetUpdater({ boleto, lojista, fornecedor, pagamento, valor, venda, comissao,
+				assessor, vencimento, tipo, receita, mes }))
+		} catch (error) {
+			res.send(error)
+		}
 	} else {
 		res.send('INVALID_REQUEST')
 	}
