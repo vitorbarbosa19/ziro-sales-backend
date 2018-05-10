@@ -23,7 +23,7 @@ app.get('/', async (req, res) => {
 		const sheetUpdater = require('./functions/sheetUpdater')
 		try {
 			res.send(await sheetUpdater({ romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
-				comissao, assessor, vencimento, tipo, receita, mes }))
+				comissao, assessor, vencimento, tipo, receita, mes, ano }))
 		} catch (error) {
 			console.log(error)
 			res.send(error)
