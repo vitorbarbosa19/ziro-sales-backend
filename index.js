@@ -19,11 +19,15 @@ app.get('/', async (req, res) => {
 		const receita = valor * comissao
 		const mes = findMonth(venda.substr(3,3))
 		const ano = venda.substr(7,4)
+		const cadastro = new Date().toString().substr(4,20)
 		// save all parameters to a google spreadsheet
 		const sheetUpdater = require('./functions/sheetUpdater')
 		try {
-			res.send(await sheetUpdater({ romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
-				comissao, assessor, vencimento, tipo, receita, mes, ano }))
+			await sheetUpdater({ sheet: 'ONE', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
+				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
+			await sheetUpdater({ sheet: 'TWO', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
+				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
+			res.send('SUCCESS')
 		} catch (error) {
 			console.log(error)
 			res.send(error)
