@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
 			await sheetUpdater({ sheet: 'TWO', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
 				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
-			res.send('SUCCESS')
+			res.send('_SUCCESS')
 		} catch (error) {
 			console.log(error)
 			res.send(error)
