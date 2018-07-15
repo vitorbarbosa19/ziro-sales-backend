@@ -9,10 +9,10 @@ app.get('/', async (req, res) => {
 	const query = url.parse(req.url, true).query
 	// save query parameters from front-end form submit
 	const { romaneio, boleto, lojista, fornecedor, pagamento, valor,
-		venda, comissao, assessor, vencimento, tipo } = query
+		venda, comissao, quantidade, assessor, vencimento, tipo } = query
 	// check if parameters are valid
 	const validParameters = Boolean(boleto && lojista && fornecedor && pagamento && valor && venda
-		&& comissao && assessor && vencimento && tipo)
+		&& comissao && quantidade && assessor && vencimento && tipo)
 	// if valid, generate the calculated parameters
 	if (validParameters) {
 		const findMonth = require('./functions/findMonth')
@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
 		const sheetUpdater = require('./functions/sheetUpdater')
 		try {
 			await sheetUpdater({ sheet: 'ONE', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
-				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
+				comissao, assessor, vencimento, quantidade, tipo, receita, mes, ano, cadastro })
 			await sheetUpdater({ sheet: 'TWO', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
 				comissao, assessor, vencimento, tipo, receita, mes, ano, cadastro })
 			res.send('_SUCCESS')
