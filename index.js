@@ -16,7 +16,7 @@ app.get('/', async (req, res) => {
 	// if valid, generate the calculated parameters
 	if (validParameters) {
 		const findMonth = require('./functions/findMonth')
-		const receita = valor * comissao
+		const receita = Math.round(valor * comissao * 100) / 100
 		const mes = findMonth(venda.substr(3,3))
 		const ano = venda.substr(7,4)
 		const cadastro = new Date().toString().substr(4,20)
