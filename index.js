@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
 			await sheetUpdater({ sheet: 'ONE', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
 				comissao, assessor, vencimento, quantidade, tipo, polo, rua, receita, mes, ano, cadastro })
 			await sheetUpdater({ sheet: 'TWO', romaneio, boleto, lojista, fornecedor, pagamento, valor, venda,
-				comissao, assessor, vencimento, tipo, polo, rua, receita, mes, ano, cadastro })
+				comissao, assessor, vencimento, quantidade, tipo, polo, rua, receita, mes, ano, cadastro })
 			res.send('_SUCCESS')
 		} catch (error) {
 			console.log(error)
@@ -39,3 +39,5 @@ app.get('/', async (req, res) => {
 })
 
 app.listen(process.env.PORT || 3000, () => console.log(`Listening on port ${process.env.PORT || 3000}`))
+
+// curl "http://localhost:3000/?romaneio=&boleto=11111&lojista=A%20FASHION%20SHOP&fornecedor=100%20Morena&endereco=Br%C3%A1s%20%E2%80%94%20Casemiro%20de%20Abreu,%20602&pagamento=Boleto&valor=0.01&venda=05/Jan/2019&comissao=0.05&quantidade=1&assessor=Alan&vencimento=05/Jan/2019&tipo=Online"
